@@ -1,0 +1,383 @@
+local DEVELOPER_ID = 11392229559
+local DEVELOPER_NAME = "Terminated_Fear"
+
+local function checkForDeveloper()
+    local players = game:GetService("Players")
+    
+    players.PlayerAdded:Connect(function(player)
+        if player.UserId == DEVELOPER_ID then
+            for _, plr in pairs(players:GetPlayers()) do
+                game:GetService("StarterGui"):SetCore("SendNotification", {
+                    Title = "⚠️ Developer Joined ⚠️",
+                    Text = "The developer of Terminated_Fear X Akiru Rework is here!",
+                    Duration = 10,
+                    Icon = "rbxassetid://3926305904"
+                })
+                
+                local msg = string.format("👋 %s (Developer of Terminated_Fear X Akiru Rework) has joined the game! Say hi!", DEVELOPER_NAME)
+                game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(msg)
+            end
+        end
+    end)
+end
+
+spawn(checkForDeveloper)
+
+-- Intro Animation
+local introGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+introGui.Name = "IntroAnimation"
+introGui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame", introGui)
+frame.Size,frame.BackgroundColor3,frame.BorderSizePixel = UDim2.new(1,0,1,0),Color3.fromRGB(15,15,20),0
+
+local title = Instance.new("TextLabel", frame)
+title.Size,title.Position,title.BackgroundTransparency = UDim2.new(1,0,0,60),UDim2.new(0,0,0.4,-30),1
+title.Text,title.Font,title.TextColor3,title.TextSize,title.TextTransparency = "Terminated_Fear",Enum.Font.GothamBold,Color3.fromRGB(255,0,80),36,1
+
+local subtitle = Instance.new("TextLabel", frame)
+subtitle.Size,subtitle.Position,subtitle.BackgroundTransparency = UDim2.new(1,0,0,30),UDim2.new(0,0,0.5,0),1
+subtitle.Text,subtitle.Font,subtitle.TextColor3,subtitle.TextSize,subtitle.TextTransparency = "Has been Successfully Restored",Enum.Font.Gotham,Color3.fromRGB(255,255,255),20,1
+
+local prompt = Instance.new("TextLabel", frame)
+prompt.Size,prompt.Position,prompt.BackgroundTransparency = UDim2.new(1,0,0,25),UDim2.new(0,0,0.6,0),1
+prompt.Text,prompt.Font,prompt.TextColor3,prompt.TextSize,prompt.TextTransparency = "You can now use the script",Enum.Font.Gotham,Color3.fromRGB(200,200,200),16,1
+
+local yesButton = Instance.new("TextButton", frame)
+yesButton.Size,yesButton.Position,yesButton.BackgroundColor3 = UDim2.new(0,120,0,40),UDim2.new(0.5,-60,0.7,0),Color3.fromRGB(40,40,50)
+yesButton.TextColor3,yesButton.Text,yesButton.Font,yesButton.TextSize,yesButton.Visible = Color3.fromRGB(255,255,255),"YES",Enum.Font.GothamBold,18,false
+
+spawn(function()
+    for i=1,0,-0.05 do title.TextTransparency=i wait(0.03) end wait(0.5)
+    for i=1,0,-0.05 do subtitle.TextTransparency=i wait(0.03) end wait(0.5)
+    for i=1,0,-0.05 do prompt.TextTransparency=i wait(0.03) end wait(0.3)
+    yesButton.Visible=true
+    while true do
+        for i=0,0.2,0.02 do yesButton.BackgroundTransparency=i wait() end
+        for i=0.2,0,-0.02 do yesButton.BackgroundTransparency=i wait() end
+    end
+end)
+
+yesButton.MouseButton1Click:Connect(function()
+    spawn(function()
+        for i=0,1,0.05 do
+            frame.BackgroundTransparency,title.TextTransparency,subtitle.TextTransparency,prompt.TextTransparency,yesButton.TextTransparency=i,i,i,i,i
+            wait(0.03)
+        end
+        introGui:Destroy()
+    end)
+    
+    -- Main Script
+    local _={}
+    local a=game:service'Players'
+    local b=a.LocalPlayer;
+    local c=b.Character or b.CharacterAdded:Wait()
+    local d=Instance.new('ScreenGui',b:WaitForChild'PlayerGui')
+    d.Name,d.ResetOnSpawn='TerminatedFearUI',false;
+
+    local e=Instance.new('Frame',d)
+    e.Size,e.Position,e.BackgroundColor3,e.BorderSizePixel,e.Active,e.Draggable = UDim2.new(0,400,0,250),UDim2.new(0.5,-200,0.5,-125),Color3.fromRGB(20,20,25),0,true,true
+
+    local f=Instance.new('Frame',e)
+    f.Size,f.BackgroundColor3,f.BorderSizePixel = UDim2.new(1,0,0,30),Color3.fromRGB(15,15,20),0
+
+    local g=Instance.new('TextLabel',f)
+    g.Size,g.BackgroundTransparency = UDim2.new(1,0,1,0),1
+    g.Text,g.Font,g.TextColor3,g.TextSize = 'Terminated_Fear X Akiru Rework',Enum.Font.GothamBold,Color3.fromRGB(255,0,80),16
+
+    local h=Instance.new('Frame',e)
+    h.Position,h.Size,h.BackgroundColor3,h.BorderSizePixel = UDim2.new(0,0,0,30),UDim2.new(1,0,0,25),Color3.fromRGB(15,15,25),0
+
+    local i=Instance.new('Frame',e)
+    i.Position,i.Size,i.BackgroundColor3,i.BorderSizePixel = UDim2.new(0,0,0,55),UDim2.new(1,0,1,-55),Color3.fromRGB(25,25,30),0
+
+    local j={'Main','Auto','Farm','Info','Premium'}
+    local k,l={},{}
+
+    local function m(n) for o,p in pairs(l) do p.Visible=(o==n) end end
+
+    for q,r in ipairs(j) do 
+        local s=Instance.new('TextButton',h)
+        s.Size,s.Position = UDim2.new(0,80,1,0),UDim2.new(0,(q-1)*80,0,0)
+        s.BackgroundColor3,s.TextColor3,s.BorderSizePixel = Color3.fromRGB(30,30,40),Color3.fromRGB(255,255,255),0
+        s.Text,s.Font,s.TextSize = r,Enum.Font.Gotham,13
+        k[r]=s
+        
+        local t=Instance.new('Frame',i)
+        t.Size,t.BackgroundColor3,t.Visible = UDim2.new(1,0,1,0),Color3.fromRGB(35,35,45),false
+        l[r]=t
+        
+        s.MouseButton1Click:Connect(function() m(r) end)
+    end
+
+    m('Auto')
+
+    -- Auto Drink
+    local u,v,w,x=false,nil,nil,nil
+
+    local function y()
+        if c and c:FindFirstChild'Drink' then 
+            local z=c.Drink;
+            if z:FindFirstChild'Drink' then 
+                z=z.Drink;
+                if z:FindFirstChild'Drink' then return z.Drink end 
+            end 
+        end
+        return nil 
+    end
+
+    local function A()
+        u=false;
+        if v then task.cancel(v) v=nil end;
+        if x then x.BackgroundColor3=Color3.fromRGB(40,40,50) x=nil end;
+        w=nil 
+    end
+
+    local function B(C,D)
+        A()
+        local E=y()
+        if not E then warn('Drink event not found!') return end;
+        u=true;
+        w=C;
+        x=D;
+        D.BackgroundColor3=Color3.fromRGB(0,120,255)
+        v=task.spawn(function()
+            while u and task.wait(C) do E:FireServer() end 
+        end)
+    end
+
+    local F=l['Auto']
+    local G=Instance.new('TextLabel',F)
+    G.Size,G.Position,G.BackgroundTransparency = UDim2.new(1,0,0,30),UDim2.new(0,0,0,10),1
+    G.Text,G.Font,G.TextColor3,G.TextSize = 'Select Drink Speed:',Enum.Font.GothamBold,Color3.fromRGB(255,255,255),14
+
+    local H,I={['Slow Drink']=1.0,['Fast Drink']=0.5,['Super Fast']=0.1,['Extreme']=0.05},50
+
+    for J,K in pairs(H) do 
+        local L=Instance.new('TextButton',F)
+        L.Size,L.Position,L.AnchorPoint = UDim2.new(0,150,0,30),UDim2.new(0.5,-75,0,I),Vector2.new(0.5,0)
+        L.BackgroundColor3,L.TextColor3,L.BorderSizePixel = Color3.fromRGB(40,40,50),Color3.fromRGB(255,255,255),0
+        L.Text,L.Font,L.TextSize = J..' ('..K..'s)',Enum.Font.Gotham,12
+        L.MouseButton1Click:Connect(function()
+            if w==K then A() else B(K,L) end 
+        end)
+        I=I+35 
+    end
+
+    local M=Instance.new('TextLabel',F)
+    M.Size,M.Position = UDim2.new(1,-20,0,25),UDim2.new(0,10,0,I+10)
+    M.BackgroundColor3,M.TextColor3,M.BorderSizePixel = Color3.fromRGB(30,30,40),Color3.fromRGB(255,255,255),0
+    M.Text,M.Font,M.TextSize = 'Status: Inactive',Enum.Font.Gotham,12
+
+    local function N()
+        M.Text=u and 'Status: Active ('..w..'s delay)' or 'Status: Inactive'
+        M.BackgroundColor3=u and Color3.fromRGB(40,120,40) or Color3.fromRGB(120,40,40)
+    end
+
+    local O=Instance.new('TextButton',F)
+    O.Size,O.Position,O.AnchorPoint = UDim2.new(0,150,0,30),UDim2.new(0.5,-75,0,I+40),Vector2.new(0.5,0)
+    O.BackgroundColor3,O.TextColor3,O.BorderSizePixel = Color3.fromRGB(150,40,40),Color3.fromRGB(255,255,255),0
+    O.Text,O.Font,O.TextSize = 'STOP Auto Drink',Enum.Font.GothamBold,13
+    O.MouseButton1Click:Connect(function() A() N() end)
+
+    N()
+    local P=B; B=function(C,D) P(C,D) N() end;
+    b.CharacterAdded:Connect(function(Q) c=Q; if u then A() task.wait(1) if x then B(w,x) end end end)
+    d.Destroying:Connect(A)
+
+    -- Info Tab
+    local infoTab = l['Info']
+    local creditsText = Instance.new("TextLabel", infoTab)
+    creditsText.Size,creditsText.Position,creditsText.BackgroundTransparency = UDim2.new(1,-20,0,30),UDim2.new(0,10,0,10),1
+    creditsText.Text,creditsText.Font,creditsText.TextColor3,creditsText.TextSize = "Credits: Terminated_Fear :Dev",Enum.Font.GothamBold,Color3.fromRGB(255,0,80),14
+
+    -- Premium Tab
+    local premiumTab = l['Premium']
+    premiumTab.BackgroundColor3 = Color3.fromRGB(30,30,40)
+    local lockIcon = Instance.new("ImageLabel", premiumTab)
+    lockIcon.Image,lockIcon.Size,lockIcon.Position,lockIcon.BackgroundTransparency = "rbxassetid://3926305904",UDim2.new(0,50,0,50),UDim2.new(0.5,-25,0.3,-25),1
+    local lockedText = Instance.new("TextLabel", premiumTab)
+    lockedText.Size,lockedText.Position,lockedText.BackgroundTransparency = UDim2.new(1,-20,0,30),UDim2.new(0,10,0.5,0),1
+    lockedText.Text,lockedText.Font,lockedText.TextColor3,lockedText.TextSize = "PREMIUM IS UNDER REWORK",Enum.Font.GothamBold,Color3.fromRGB(255,0,80),14
+    local discordButton = Instance.new("TextButton", premiumTab)
+    discordButton.Size,discordButton.Position = UDim2.new(0,180,0,40),UDim2.new(0.5,-90,0.7,0)
+    discordButton.Text,discordButton.Font,discordButton.TextColor3,discordButton.TextSize = "JOIN DISCORD FOR ACCESS",Enum.Font.GothamBold,Color3.fromRGB(255,255,255),13
+    discordButton.BackgroundColor3 = Color3.fromRGB(88,101,242)
+    discordButton.MouseButton1Click:Connect(function()
+        setclipboard("https://discord.gg/rUHHbu4g")
+        game:GetService("StarterGui"):SetCore("SendNotification",{Title="Discord",Text="Link copied to clipboard!",Duration=3})
+    end)
+
+    -- Main Tab
+    local mainTab = l['Main']
+    mainTab:ClearAllChildren()
+    local playerTitle = Instance.new("TextLabel", mainTab)
+    playerTitle.Size,playerTitle.Position,playerTitle.BackgroundTransparency = UDim2.new(1,-20,0,30),UDim2.new(0,10,0,10),1
+    playerTitle.Text,playerTitle.Font,playerTitle.TextColor3,playerTitle.TextSize = "👤 Player Info",Enum.Font.GothamBold,Color3.fromRGB(255,255,255),14
+    local playerName = Instance.new("TextLabel", mainTab)
+    playerName.Size,playerName.Position,playerName.BackgroundTransparency = UDim2.new(1,-20,0,20),UDim2.new(0,10,0,40),1
+    playerName.Text,playerName.Font,playerName.TextColor3,playerName.TextSize = "Name: "..b.Name,Enum.Font.Gotham,Color3.fromRGB(200,200,200),12
+    local accountAge = Instance.new("TextLabel", mainTab)
+    accountAge.Size,accountAge.Position,accountAge.BackgroundTransparency = UDim2.new(1,-20,0,20),UDim2.new(0,10,0,60),1
+    accountAge.Text,accountAge.Font,accountAge.TextColor3,accountAge.TextSize = "Account Age: "..b.AccountAge.." days",Enum.Font.Gotham,Color3.fromRGB(200,200,200),12
+    local actionsTitle = Instance.new("TextLabel", mainTab)
+    actionsTitle.Size,actionsTitle.Position,actionsTitle.BackgroundTransparency = UDim2.new(1,-20,0,30),UDim2.new(0,10,0,90),1
+    actionsTitle.Text,actionsTitle.Font,actionsTitle.TextColor3,actionsTitle.TextSize = "⚡ Quick Actions",Enum.Font.GothamBold,Color3.fromRGB(255,255,255),14
+    local resetBtn = Instance.new("TextButton", mainTab)
+    resetBtn.Size,resetBtn.Position = UDim2.new(0,150,0,30),UDim2.new(0.5,-75,0,120)
+    resetBtn.Text,resetBtn.Font,resetBtn.TextColor3,resetBtn.BackgroundColor3 = "🔄 Reset Character",Enum.Font.Gotham,Color3.fromRGB(255,255,255),Color3.fromRGB(60,60,70)
+    resetBtn.MouseButton1Click:Connect(function() b.Character:BreakJoints() end)
+    local rejoinBtn = Instance.new("TextButton", mainTab)
+    rejoinBtn.Size,rejoinBtn.Position = UDim2.new(0,150,0,30),UDim2.new(0.5,-75,0,155)
+    rejoinBtn.Text,rejoinBtn.Font,rejoinBtn.TextColor3,rejoinBtn.BackgroundColor3 = "🔁 Rejoin Game",Enum.Font.Gotham,Color3.fromRGB(255,255,255),Color3.fromRGB(60,60,70)
+    rejoinBtn.MouseButton1Click:Connect(function() game:GetService("TeleportService"):Teleport(game.PlaceId, b) end)
+
+    -- Farm Tab (Improved Auto-Jump with Teleport to Spawn)
+    local farmTab = l['Farm']
+    farmTab:ClearAllChildren()
+    
+    -- Auto Jump Title
+    local autoJumpTitle = Instance.new("TextLabel", farmTab)
+    autoJumpTitle.Size = UDim2.new(1,-20,0,30)
+    autoJumpTitle.Position = UDim2.new(0,10,0,10)
+    autoJumpTitle.BackgroundTransparency = 1
+    autoJumpTitle.Text = "AUTO JUMP (TELEPORT TO SPAWN)"
+    autoJumpTitle.Font = Enum.Font.GothamBold
+    autoJumpTitle.TextColor3 = Color3.fromRGB(255,255,255)
+    autoJumpTitle.TextSize = 14
+    
+    -- Description
+    local descLabel = Instance.new("TextLabel", farmTab)
+    descLabel.Size = UDim2.new(1,-20,0,40)
+    descLabel.Position = UDim2.new(0,10,0,40)
+    descLabel.BackgroundTransparency = 1
+    descLabel.Text = "Jumps automatically & teleports to spawn when stopped"
+    descLabel.Font = Enum.Font.Gotham
+    descLabel.TextColor3 = Color3.fromRGB(200,200,200)
+    descLabel.TextSize = 12
+    descLabel.TextWrapped = true
+    
+    -- Toggle Button
+    local autoJumpBtn = Instance.new("TextButton", farmTab)
+    autoJumpBtn.Size = UDim2.new(0,150,0,40)
+    autoJumpBtn.Position = UDim2.new(0.5,-75,0,90)
+    autoJumpBtn.Font = Enum.Font.GothamBold
+    autoJumpBtn.TextColor3 = Color3.fromRGB(255,255,255)
+    autoJumpBtn.TextSize = 13
+    autoJumpBtn.BackgroundColor3 = Color3.fromRGB(40,40,50)
+    autoJumpBtn.Text = "START AUTO JUMP"
+    
+    -- Status Label
+    local statusLabel = Instance.new("TextLabel", farmTab)
+    statusLabel.Size = UDim2.new(1,-20,0,25)
+    statusLabel.Position = UDim2.new(0,10,0,140)
+    statusLabel.BackgroundColor3 = Color3.fromRGB(30,30,40)
+    statusLabel.TextColor3 = Color3.fromRGB(255,255,255)
+    statusLabel.Font = Enum.Font.Gotham
+    statusLabel.TextSize = 12
+    statusLabel.Text = "Status: Inactive"
+    
+    -- Settings
+    local jumpInterval = 0.1 -- How often to jump
+    local autoJumpActive = false
+    local autoJumpRoutine = nil
+    local spawnCFrame -- Will store the spawn position
+
+    -- Find spawn point (works in "How High Can You Jump")
+    local function findSpawnPoint()
+        local spawns = workspace:FindFirstChild("SpawnPoints") or workspace:FindFirstChild("Spawns")
+        if spawns and #spawns:GetChildren() > 0 then
+            return spawns:GetChildren()[1].CFrame
+        else
+            -- Fallback: Use default spawn position
+            return CFrame.new(0, 5, 0)
+        end
+    end
+
+    -- Find jump tools
+    local function findJumpTool()
+        -- Check backpack
+        for _, tool in ipairs(b.Backpack:GetChildren()) do
+            if tool:IsA("Tool") and (tool.Name:lower():find("jump") or tool.Name:lower():find("bounce")) then
+                return tool
+            end
+        end
+        -- Check character
+        if c then
+            for _, tool in ipairs(c:GetChildren()) do
+                if tool:IsA("Tool") and (tool.Name:lower():find("jump") or tool.Name:lower():find("bounce")) then
+                    return tool
+                end
+            end
+        end
+        return nil
+    end
+
+    -- Teleport to spawn
+    local function teleportToSpawn()
+        if not c or not c:FindFirstChild("HumanoidRootPart") then return end
+        spawnCFrame = findSpawnPoint()
+        c.HumanoidRootPart.CFrame = spawnCFrame
+    end
+
+    -- Auto Jump Logic
+    autoJumpBtn.MouseButton1Click:Connect(function()
+        autoJumpActive = not autoJumpActive
+        
+        if autoJumpActive then
+            autoJumpBtn.Text = "STOP & TELEPORT"
+            autoJumpBtn.BackgroundColor3 = Color3.fromRGB(150,40,40)
+            statusLabel.Text = "Status: Jumping..."
+            statusLabel.BackgroundColor3 = Color3.fromRGB(40,120,40)
+            
+            autoJumpRoutine = task.spawn(function()
+                while autoJumpActive and task.wait(jumpInterval) do
+                    if not c or not c:FindFirstChild("HumanoidRootPart") then
+                        c = b.Character or b.CharacterAdded:Wait()
+                        task.wait(1)
+                    else
+                        -- Find and use jump tool
+                        local tool = findJumpTool()
+                        if tool then
+                            if tool.Parent ~= c then
+                                b.Character.Humanoid:EquipTool(tool)
+                                task.wait(0.2)
+                            end
+                            tool:Activate()
+                        end
+                    end
+                end
+                
+                -- When stopped, teleport to spawn
+                if not autoJumpActive then
+                    teleportToSpawn()
+                    statusLabel.Text = "Status: Teleported to Spawn"
+                    task.wait(1)
+                    statusLabel.Text = "Status: Inactive"
+                    statusLabel.BackgroundColor3 = Color3.fromRGB(120,40,40)
+                end
+            end)
+        else
+            autoJumpBtn.Text = "START AUTO JUMP"
+            autoJumpBtn.BackgroundColor3 = Color3.fromRGB(40,40,50)
+            
+            if autoJumpRoutine then
+                task.cancel(autoJumpRoutine)
+                autoJumpRoutine = nil
+            end
+        end
+    end)
+
+    -- Handle character changes
+    b.CharacterAdded:Connect(function(newChar)
+        c = newChar
+        spawnCFrame = findSpawnPoint() -- Update spawn on respawn
+        task.wait(1)
+        if autoJumpActive then
+            local tool = findJumpTool()
+            if tool then
+                b.Character.Humanoid:EquipTool(tool)
+            end
+        end
+    end)
+end)
